@@ -1,0 +1,76 @@
+/*
+Welcome to the CSS document.
+NOTING
+  If you'd like to bookmark a certain area for future work, type ++++ in your comment.
+  If you'd like to point out wonky behavior/a bug, type [[]] in your comment.
+NAVIGATION
+  Use CTRL+F, then look for ><><'s to navigate between general sections.
+  Use CTRL+F, then look for ||'s to navigate between subsections.
+Example list of general sections:
+  ><>< general styles for all pages
+  ><>< styles specific to index.html
+Example list of subsections:
+  || general styles (eg. body, h1, h2)
+  || div styles
+  || paragraph styles
+*/
+
+/*-----------------------------------
+><>< GENERAL STYLES (for all pages)
+-----------------------------------*/
+/* || @media prompts, @import */
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans&display=swap');
+
+/* || general styles (eg. body, h1, h2) */
+body {
+  width:100vw;
+  margin:0;
+}
+p {
+  font-family: 'Open Sans', sans-serif;
+  margin:0;
+}
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'PT Sans', sans-serif;
+  font-weight:normal;
+  margin:0;
+}
+/* || utility classes */
+.centered { /*centers an element vertically and horizontally using absolute position*/
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+}
+.greyText {
+  color:rgb(175,175,175);
+}
+
+/*--------------------------------
+><>< STYLES SPECIFIC TO index.html
+--------------------------------*/
+/* || topbar*/
+.topbar {
+
+}
+/* || section one*/
+.sectionOne {
+  position:relative;
+  width:100%;
+  height:90vh;
+  color:white;
+  text-align:center;
+}
+.sectionOne h1 {
+  letter-spacing:10px;
+}
+.sectionOne .wideImage {
+  position:absolute;
+  left:0;
+  top:0;
+  width:100%;
+  height:100%;
+  z-index:-100;
+  background-image:url("../images/PLACEHOLDER.jpg");
+  background-size:cover;
+}
