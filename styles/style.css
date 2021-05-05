@@ -20,15 +20,23 @@ Example list of subsections:
 -----------------------------------*/
 /* || @media prompts, @import */
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=PT+Sans&display=swap');
-
+/* || variables*/
+:root {
+  --radius:5px; /*the default radius every border radius element should have*/
+  --normTrans:0.2s; /*normal transition speed*/
+  --slowTrans:0.4s; /*slow transition speed*/
+  --superSlowTrans:2s; /*super slow trannsition speed, save for effects that dont rely on user input*/
+}
 /* || general styles (eg. body, h1, h2) */
 body {
   width:100vw;
+  height:10000px;
+  overflow-x:hidden;
   margin:0;
 }
-p {
+p,input {
   font-family:'Open Sans', sans-serif;
-  font-size:1.5vw;
+  font-size:clamp(12px,1.5vw,15px);
   margin:0;
 }
 h1,h2,h3,h4,h5,h6 {
@@ -36,10 +44,15 @@ h1,h2,h3,h4,h5,h6 {
   font-weight:normal;
   margin:0;
 }
+h1 {
+  font-size:clamp(30px,3vw,60px);
+}
+input:focus {
+  outline:0;
+}
 /* || utility classes */
 .centered { /* centers an element vertically and horizontally using absolute position */
   position:absolute;
-  width:100%;
   top:50%;
   left:50%;
   transform:translate(-50%,-50%);
@@ -47,7 +60,32 @@ h1,h2,h3,h4,h5,h6 {
 .greyText {
   color:rgb(175,175,175);
 }
-
+.hoverable { /*class required for all elements with tooltips*/
+  position:relative;
+}
+.hoverable .tooltip {
+  position:absolute;
+  left:50%;
+  transform:translatex(-50%);
+  top:calc(100% + 10px);
+  padding:2px 10px;
+  border-radius:var(--radius);
+  background-color:rgba(0,0,0,0.1);
+  opacity:0; /*[[]] BUG: for some reason, it's opacity isnt immediately 0 onload so it's visible for a bit*/
+  transition:var(--normTrans) opacity;
+}
+.hoverable:hover .tooltip {
+  opacity:1;
+}
+/* || utility animations*/
+@keyframes fadeIn {
+  from {
+    opacity:0;
+  }
+  to {
+    opacity:1;
+  }
+}
 /*--------------------------------
 ><>< STYLES SPECIFIC TO index.html
 --------------------------------*/
@@ -59,9 +97,13 @@ h1,h2,h3,h4,h5,h6 {
   top:0;
   left:0;
 }
+.topbar .hyperlinks {
+  float:right;
+}
 .topbar a {
   padding:1vw 2vw;
-  float:right;
+  float:left;
+  color:rgb(255,255,255);/*++++ javascript to make this black when the big image is scrolled past*/
 }
 /* || section one */
 .sectionOne {
@@ -71,10 +113,26 @@ h1,h2,h3,h4,h5,h6 {
   color:white;
   text-align:center;
 }
-.sectionOne h1 {
-  font-size:3vw;
+.sectionOne .centered {
+  padding:0px 20px;
+  box-sizing:border-box;
   width:100%;
-  letter-spacing:0.6vw;
+}
+.sectionOne .centered h1 {
+  letter-spacing:0;
+  width:100%;
+  animation:spacingWoosh var(--superSlowTrans);
+  animation-timing-function:cubic-bezier(0,0,0,1);
+  animation-fill-mode:forwards;
+}
+@keyframes spacingWoosh {
+  to {
+    letter-spacing:clamp(0.6vw,0.6vw,3px);
+  }
+}
+.sectionOne .centered p {
+  opacity:0;
+  animation:fadeIn var(--slowTrans) var(--superSlowTrans) forwards;
 }
 .sectionOne .wideImage {
   position:absolute;
@@ -85,4 +143,33 @@ h1,h2,h3,h4,h5,h6 {
   z-index:-100;
   background-image:url("../images/PLACEHOLDER.jpg");
   background-size:cover;
+  background-position:center;
+}
+/* || section two */
+.topSection {
+  position:relative;
+  width:100%;
+  height:100px; /*basically dictates the padding around the scrollbar*/
+}
+.scrollbarParent {
+  height:30px;
+  display:flex;
+}
+.scrollbarParent input {
+  border:1px solid black;
+  width:300px; /*[[]] does not support smol screens*/
+  height:100%;
+  box-sizing:border-box;
+  padding:0px 8px;
+  float:left;
+  border-radius:var(--radius) 0 0 var(--radius);
+}
+.scrollbarParent .hoverable {
+  width:40px;
+  height:100%;
+  border:solid black;
+  border-width:1px 1px 1px 0px;
+  box-sizing:border-box;
+  float:left;
+  border-radius:0 var(--radius) var(--radius) 0;
 }
