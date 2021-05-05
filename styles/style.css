@@ -53,7 +53,11 @@ h1,h2,h3,h4,h5,h6 {
 --------------------------------*/
 /* || topbar*/
 .topbar {
-
+  z-index:100;
+  position:fixed;
+  width:100%;
+  top:0;
+  left:0;
 }
 
 .topbar a {
