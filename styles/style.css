@@ -101,9 +101,14 @@ input:focus {
   float:right;
 }
 .topbar a {
+  text-decoration:none;
   padding:1vw 2vw;
   float:left;
   color:rgb(255,255,255);/*++++ javascript to make this black when the big image is scrolled past*/
+}
+.topbar a:hover {
+  color:black;
+  background:white;
 }
 /* || section one */
 .sectionOne {
