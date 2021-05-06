@@ -178,3 +178,28 @@ input:focus {
   float:left;
   border-radius:0 var(--radius) var(--radius) 0;
 }
+.midSection{
+  display:flex;
+  justify-content: space-evenly;
+  flex-flow: row wrap;
+  align-items: flex-start;
+}
+.competitionParent {
+  border:5px solid black;
+  width:250px;
+  margin-bottom:15px;
+  border-radius:var(--radius);
+  padding:12px 10px;
+  text-align:center;
+}
+.competitionParent div {
+  margin-top:5px;
+  width:100%;
+  text-align:left;
+}
+.competitionTitle {
+  font-family:'Open Sans', sans-serif;
+}
+.competitionOrg {
+  font-family:'Open Sans', sans-serif;
+}
