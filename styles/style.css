@@ -28,13 +28,16 @@ Example list of subsections:
   --superSlowTrans:2s; /*super slow trannsition speed, save for effects that dont rely on user input*/
 }
 /* || general styles (eg. body, h1, h2) */
+* {
+  box-sizing:border-box;
+}
 body {
   width:100vw;
   height:10000px;
   overflow-x:hidden;
   margin:0;
 }
-p,input {
+p,input,span {
   font-family:'Open Sans', sans-serif;
   font-size:clamp(12px,1.5vw,15px);
   margin:0;
@@ -126,11 +129,11 @@ input:focus {
 .sectionOne .centered h1 {
   letter-spacing:0;
   width:100%;
-  animation:spacingWoosh var(--superSlowTrans);
+  animation:spacingAnim var(--superSlowTrans);
   animation-timing-function:cubic-bezier(0,0,0,1);
   animation-fill-mode:forwards;
 }
-@keyframes spacingWoosh {
+@keyframes spacingAnim {
   to {
     letter-spacing:clamp(0.6vw,0.6vw,3px);
   }
@@ -156,11 +159,11 @@ input:focus {
   width:100%;
   height:100px; /*basically dictates the padding around the scrollbar*/
 }
-.scrollbarParent {
+.searchbarParent {
   height:30px;
   display:flex;
 }
-.scrollbarParent input {
+.searchbarParent input {
   border:1px solid black;
   width:300px; /*[[]] does not support smol screens*/
   height:100%;
@@ -169,7 +172,7 @@ input:focus {
   float:left;
   border-radius:var(--radius) 0 0 var(--radius);
 }
-.scrollbarParent .hoverable {
+.searchbarParent .hoverable {
   width:40px;
   height:100%;
   border:solid black;
@@ -177,4 +180,53 @@ input:focus {
   box-sizing:border-box;
   float:left;
   border-radius:0 var(--radius) var(--radius) 0;
+}
+.midSection{
+  display:flex;
+  justify-content:center;
+  flex-flow:row wrap;
+  align-items:flex-start;
+}
+.competitionParent {
+  border:5px solid black;
+  width:250px;
+  height:500px;
+  margin:0 15px 15px 0;
+  border-radius:10px;
+  text-align:center;
+}
+.competitionParent img {
+  border-radius:var(--radius);
+  width:90%;
+  margin:5% 0 0 0;
+}
+.competitionParent div:nth-of-type(1) {
+  width:90%;
+  text-align:left;
+  margin:0 5%;
+}
+.competitionParent p:nth-of-type(1) {
+  width:100%;
+  font-size:25px;
+  height:34px;
+}
+.competitionParent p:nth-of-type(2) {
+  width:100%;
+  height:20px;
+  font-size:15px;
+}
+.competitionParent p:nth-of-type(3) {
+  width:100%;
+  height:95px;
+  margin:5px 0 5px 0;
+  padding:2px;
+  font-size:15px;
+  overflow-y:scroll;
+  background:brown;
+  border-radius:var(--radius);
+}
+.competitionParent div:nth-of-type(2) { /* for some reason, ".tags" doesn't work */
+  width:90%;
+  text-align:right;
+  margin:0 5%;  
 }
